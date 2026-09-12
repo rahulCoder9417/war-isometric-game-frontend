@@ -35,4 +35,14 @@ body {
   line-height: 1.4;
   pointer-events: none;
   user-select: none;
+  white-space: pre;
+}
+
+#hud div + div {
+  margin-top: 3px;
+}
+
+#hud-state {
+  margin-top: 8px;
+  color: #9fb0c0;
 }
