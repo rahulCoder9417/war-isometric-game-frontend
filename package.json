@@ -1,0 +1,24 @@
+{
+  "name": "war-isometric-game-frontend",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "A 2.5D isometric war simulation built with Three.js",
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "vite": "^7.1.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}
