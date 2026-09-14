@@ -42,7 +42,7 @@ body {
   margin-top: 3px;
 }
 
-#hud-state {
+#hud #hud-state {
   margin-top: 8px;
   color: #9fb0c0;
 }
