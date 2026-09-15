@@ -16,12 +16,17 @@ export function createHud(root, { label, item, isDropped }) {
   const worldPosition = new THREE.Vector3();
   let secondsSinceRefresh = 0;
   let framesSinceRefresh = 0;
+  let shownDropped = null;
 
-  function refresh() {
+  function refreshFps() {
     lines.fps.textContent = `${Math.round(framesSinceRefresh / secondsSinceRefresh)} fps`;
+  }
+
+  function refreshReadouts() {
+    shownDropped = isDropped();
     lines.local.textContent = `${label} local  ${formatVector(item.position)}`;
     lines.world.textContent = `${label} world  ${formatVector(item.getWorldPosition(worldPosition))}`;
-    lines.state.textContent = isDropped()
+    lines.state.textContent = shownDropped
       ? 'dropped — red used add(), blue used attach()   [R] reset'
       : 'held   [D] drop';
   }
@@ -30,11 +35,15 @@ export function createHud(root, { label, item, isDropped }) {
     update(delta) {
       secondsSinceRefresh += delta;
       framesSinceRefresh += 1;
-      if (secondsSinceRefresh < REFRESH_INTERVAL) return;
 
-      refresh();
-      secondsSinceRefresh = 0;
-      framesSinceRefresh = 0;
+      if (secondsSinceRefresh >= REFRESH_INTERVAL) {
+        refreshFps();
+        refreshReadouts();
+        secondsSinceRefresh = 0;
+        framesSinceRefresh = 0;
+      } else if (isDropped() !== shownDropped) {
+        refreshReadouts();
+      }
     },
   };
 }
