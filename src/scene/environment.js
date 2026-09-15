@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { TILE_SIZE } from '../world/units.js';
 
 const BACKGROUND_COLOR = 0x0d1014;
 const FOG = { near: 18, far: 48 };
@@ -53,7 +54,7 @@ function addGround(scene) {
   ground.receiveShadow = true;
   scene.add(ground);
 
-  const grid = new THREE.GridHelper(GROUND.size, GROUND.size, GRID.centerLineColor, GRID.lineColor);
+  const grid = new THREE.GridHelper(GROUND.size, GROUND.size / TILE_SIZE, GRID.centerLineColor, GRID.lineColor);
   grid.position.y = GRID.zFightOffset;
   scene.add(grid);
 }

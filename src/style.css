@@ -45,7 +45,20 @@ body {
   margin-top: 3px;
 }
 
-#hud #hud-state {
+#hud #hud-state,
+#hud #hud-axes + .hud-legend {
   margin-top: 8px;
+}
+
+#hud #hud-state,
+#hud #hud-axes {
   color: #9fb0c0;
+}
+
+.glider-orange {
+  color: #e8a04a;
+}
+
+.glider-teal {
+  color: #4fc1b6;
 }
