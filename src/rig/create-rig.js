@@ -54,6 +54,7 @@ export function createRig(bodyColor) {
       bodyY: body.position.y,
       itemPosition: item.position.clone(),
       itemQuaternion: item.quaternion.clone(),
+      itemScale: item.scale.clone(),
     },
   };
 }

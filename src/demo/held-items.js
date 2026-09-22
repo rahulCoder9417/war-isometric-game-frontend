@@ -18,6 +18,7 @@ export function createHeldItems(scene, walkers) {
       rig.hand.add(rig.item);
       rig.item.position.copy(rig.rest.itemPosition);
       rig.item.quaternion.copy(rig.rest.itemQuaternion);
+      rig.item.scale.copy(rig.rest.itemScale);
     }
     dropped = false;
   }

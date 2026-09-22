@@ -36,6 +36,24 @@ For each request:
 4. **Then** walk through the diff: what changed, why, alternatives considered,
    what breaks at 10x scale.
 
+## World conventions
+
+- **1 unit = 1 metre.** Lengths and positions are metres, speeds are metres per
+  second, time is seconds.
+- **+Y is up.** The ground is the XZ plane at `y = 0`. Things are built with
+  their origin at their feet, so standing on the ground is `position.y = 0`.
+- **A tile is 1 × 1 m** (`TILE_SIZE` in `src/world/units.js`), with grid lines
+  on whole metres.
+- **Axes are right-handed.** Seen from the positive end of an axis, a positive
+  rotation turns counter-clockwise, so `rotation.x > 0` tips +Z downwards.
+- **Models face +Z**, which puts their +X side on their *left*. Facing a ground
+  direction `(dx, dz)` is `rotation.y = Math.atan2(dx, dz)`.
+- **Angles are radians** everywhere in code. Write a hand-picked angle as
+  `THREE.MathUtils.degToRad(40)`; show degrees only in UI.
+- **When a rotation combines axes, set `rotation.order` on purpose** (`'YXZ'` for
+  turn-then-tilt). Blend orientations with quaternion `slerp`, never by lerping
+  Euler angles.
+
 ## Code conventions
 
 - **No tutorial comments.** No file-header essays, no `/* --- section --- */`
