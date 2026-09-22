@@ -10,9 +10,10 @@ function formatAngle(radians) {
   return `${radians.toFixed(3)} rad  ${THREE.MathUtils.radToDeg(radians).toFixed(1)}°`;
 }
 
-export function createHud(root, { label, item, figure, isDropped, areAxesVisible }) {
+export function createHud(root, { label, item, figure, renderStats, isDropped, areAxesVisible }) {
   const lines = {
     fps: root.querySelector('#hud-fps'),
+    cost: root.querySelector('#hud-cost'),
     local: root.querySelector('#hud-local'),
     world: root.querySelector('#hud-world'),
     heading: root.querySelector('#hud-heading'),
@@ -32,6 +33,7 @@ export function createHud(root, { label, item, figure, isDropped, areAxesVisible
   function refreshReadouts() {
     shownDropped = isDropped();
     shownAxes = areAxesVisible();
+    lines.cost.textContent = `draw calls ${renderStats.calls}   triangles ${renderStats.triangles}`;
     lines.local.textContent = `${label} item local  ${formatVector(item.position)}`;
     lines.world.textContent = `${label} item world  ${formatVector(item.getWorldPosition(worldPosition))}`;
     lines.heading.textContent = `${label} heading     ${formatAngle(figure.rotation.y)}`;
