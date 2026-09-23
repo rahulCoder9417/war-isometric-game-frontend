@@ -15,7 +15,7 @@ const SUN = {
   shadowFar: 40,
 };
 
-const GROUND = { size: 40, color: 0x3f4d3a, roughness: 0.95 };
+const GROUND = { size: 40, thickness: 0.5, color: 0x3f4d3a, roughness: 0.95 };
 const GRID = { centerLineColor: 0x5a6a52, lineColor: 0x46533f, zFightOffset: 0.002 };
 
 export function createScene() {
@@ -47,10 +47,11 @@ function addLights(scene) {
 
 function addGround(scene) {
   const ground = new THREE.Mesh(
-    new THREE.PlaneGeometry(GROUND.size, GROUND.size),
+    new THREE.BoxGeometry(GROUND.size, GROUND.thickness, GROUND.size),
     new THREE.MeshStandardMaterial({ color: GROUND.color, roughness: GROUND.roughness }),
   );
-  ground.rotation.x = -Math.PI / 2;
+  ground.name = 'ground';
+  ground.position.y = -GROUND.thickness / 2;
   ground.receiveShadow = true;
   scene.add(ground);
 
